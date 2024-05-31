@@ -47,7 +47,6 @@ const emit = defineEmits(["user-select-answer"]);
 const selectAnswer = (answerIndex) => {
   const selectedAnswer = props.quizz.answers[answerIndex];
   userAnswer.value = selectedAnswer;
-  // alert("ok");
   emit("user-select-answer", {
     id: props.quizz.id,
     userAnswer: userAnswer.value,

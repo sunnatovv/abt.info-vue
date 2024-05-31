@@ -13,7 +13,7 @@ const props = defineProps({
 const { modelValue } = toRefs(props);
 
 const count = ref(0);
-const initialTime = 360; // Set the initial countdown time (in seconds)
+const initialTime = 600;
 const remainingTime = ref(initialTime);
 let countdownInterval = null;
 
@@ -25,26 +25,25 @@ const toogleSide = () => {
 
 const resetQuizzes = () => {
   props.quizzes.forEach((quiz) => {
-    quiz.userAnswer = null; // Reset the user's answer
+    quiz.userAnswer = null;
   });
 };
 
 const finish = () => {
-  clearInterval(countdownInterval); // Clear the interval when finishing the test
+  clearInterval(countdownInterval); 
   toogleSide();
   emit("finish:test");
   window.scrollTo({
     top: 0,
-    // behavior: "smooth",
   });
-  reset(); // Reset the quiz state
+  reset();
 };
 
 const reset = () => {
   remainingTime.value = initialTime;
   resetQuizzes();
   count.value = 0;
-  startCountdown(); // Restart the countdown
+  startCountdown(); 
 };
 
 const updateCount = () => {
@@ -63,18 +62,17 @@ const buttonClasses = computed(() => {
 });
 
 const startCountdown = () => {
-  clearInterval(countdownInterval); // Clear any existing interval
+  clearInterval(countdownInterval);
   countdownInterval = setInterval(() => {
     if (remainingTime.value > 0) {
       remainingTime.value--;
     } else {
       clearInterval(countdownInterval);
-      finish(); // Automatically finish the test when time runs out
+      finish(); 
     }
   }, 1000);
 };
 
-// Helper function to format time
 const formatTime = (timeInSeconds) => {
   const hours = Math.floor(timeInSeconds / 3600);
   const minutes = Math.floor((timeInSeconds % 3600) / 60);

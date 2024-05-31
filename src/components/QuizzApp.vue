@@ -25,7 +25,7 @@
       class="bg-black flex duration-300 py-40 justify-center items-center flex-wrap gap-6"
     >
       <div v-if="isFinishTest" class="text-white w-full text-xs">
-        <div class="absolute ml-[750px] mt-[90px]">
+        <div :class="isSideMenu ? 'absolute ml-[410px] mt-[90px] duration-300': 'absolute ml-[755px] mt-[90px] duration-300'">
           <h1 class="text-center">To'g'ri javoblar soni : {{ trueQuizzes }}</h1>
           <h1 class="text-center">Umumiy foiz : {{ percentQuizzes }} %</h1>
           <h1 class="text-center">Umumiy ball : {{ userBall }} / 100</h1>
